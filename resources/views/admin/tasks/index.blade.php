@@ -12,11 +12,11 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th scope="col">Username</th>
-                                <th scope="col">E-mail</th>
-                                <th scope="col">Text</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Actions</th>
+                                <th>Username</th>
+                                <th>E-mail</th>
+                                <th>Text</th>
+                                <th>Status</th>
+                                <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
