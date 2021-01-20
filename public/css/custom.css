@@ -1,0 +1,11 @@
+.username-column{
+    min-width: 200px;
+}
+
+.email-column{
+    min-width: 200px;
+}
+
+.status-column{
+    min-width: 150px;
+}

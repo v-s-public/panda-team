@@ -13,6 +13,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Frontend
+Route::domain(env('APP_DOMAIN'))->name('frontend.')->group(function () {
+    Route::name('tasks.')->group(function () {
+        Route::resource('/', App\Http\Controllers\Frontend\TasksController::class)
+            ->only(['index', 'create', 'store']);
+    });
 });
+
+// Auth
+Route::get('login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
+Route::post('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+
+// Backend
+Route::domain('admin.' . env('APP_DOMAIN'))->group(function () {
+    Route::middleware('auth')->name('admin.')->group(function () {
+        Route::redirect('/', '/tasks');
+        Route::resource('tasks', App\Http\Controllers\Admin\TasksController::class)
+            ->only(['index', 'edit', 'update']);
+    });
+});
+
+
