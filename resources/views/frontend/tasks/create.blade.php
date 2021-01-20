@@ -49,5 +49,5 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <!-- Laravel Javascript Validation -->
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
-    {!! JsValidator::formRequest('App\Http\Requests\Frontend\TaskRequest', '#form'); !!}
+    {!! JsValidator::formRequest('App\Http\Requests\TaskRequest', '#form'); !!}
 @endsection
