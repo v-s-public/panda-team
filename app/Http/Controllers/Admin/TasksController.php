@@ -4,17 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 
 class TasksController extends Controller
 {
+    protected string $viewsFolderPrefix = 'admin.tasks';
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index() : View
     {
-        //
+        return view($this->viewsFolderPrefix . '.index');
     }
 
     /**

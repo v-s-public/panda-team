@@ -3,18 +3,21 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class TasksController extends Controller
 {
+    protected string $viewsFolderPrefix = 'frontend.tasks';
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index() : View
     {
-        //
+        return view($this->viewsFolderPrefix . '.index');
     }
 
     /**
