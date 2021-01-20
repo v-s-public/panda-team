@@ -10,6 +10,7 @@ class Task extends Model
     protected $fillable = [
         'username',
         'email',
-        'text'
+        'text',
+        'status'
     ];
 }

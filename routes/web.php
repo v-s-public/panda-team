@@ -29,7 +29,9 @@ Route::post('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout
 // Backend
 Route::domain('admin.' . env('APP_DOMAIN'))->group(function () {
     Route::middleware('auth')->name('admin.')->group(function () {
-        Route::resource('/', App\Http\Controllers\Admin\TasksController::class);
+        Route::redirect('/', '/tasks');
+        Route::resource('tasks', App\Http\Controllers\Admin\TasksController::class)
+            ->only(['index', 'edit', 'update']);
     });
 });
 
