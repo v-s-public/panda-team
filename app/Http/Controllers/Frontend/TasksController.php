@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\TaskRequest;
+use App\Models\Task;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class TasksController extends Controller
 {
     protected string $viewsFolderPrefix = 'frontend.tasks';
+    protected string $routePrefix = 'frontend.tasks';
 
     /**
      * Display a listing of the resource.
@@ -17,72 +20,30 @@ class TasksController extends Controller
      */
     public function index() : View
     {
-        return view($this->viewsFolderPrefix . '.index');
+        $tasks = Task::all();
+        return view($this->viewsFolderPrefix . '.index', compact('tasks'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create()
+    public function create() : View
     {
-        //
+        $routePrefix = $this->routePrefix;
+        return view($this->viewsFolderPrefix . '.create', compact('routePrefix'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  TaskRequest  $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(TaskRequest $request) : RedirectResponse
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        Task::create($request->all());
+        return redirect(route($this->routePrefix . '.index'));
     }
 }

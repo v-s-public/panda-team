@@ -14,8 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Frontend
-Route::domain(env('APP_DOMAIN'))->group(function () {
-    Route::resource('/', App\Http\Controllers\Frontend\TasksController::class);
+Route::domain(env('APP_DOMAIN'))->name('frontend.')->group(function () {
+    Route::name('tasks.')->group(function () {
+        Route::resource('/', App\Http\Controllers\Frontend\TasksController::class)
+            ->only(['index', 'create', 'store']);
+    });
 });
 
 // Auth
