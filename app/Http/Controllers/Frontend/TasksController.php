@@ -20,7 +20,7 @@ class TasksController extends Controller
      */
     public function index() : View
     {
-        $tasks = Task::all();
+        $tasks = Task::sortable()->paginate(3);
         return view($this->viewsFolderPrefix . '.index', compact('tasks'));
     }
 

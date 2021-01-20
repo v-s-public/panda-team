@@ -15,10 +15,10 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th scope="col">Username</th>
-                                <th scope="col">E-mail</th>
-                                <th scope="col">Text</th>
-                                <th scope="col">Status</th>
+                                <th class="username-column">@sortablelink('username','Username')</th>
+                                <th class="email-column">@sortablelink('email','E-mail')</th>
+                                <th>Text</th>
+                                <th class="status-column">@sortablelink('status','Status')</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -32,6 +32,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {!! $tasks->appends(\Request::except('page'))->render() !!}
                     </div>
                 </div>
             </div>
